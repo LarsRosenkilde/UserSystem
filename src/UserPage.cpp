@@ -35,7 +35,6 @@ void UserPage::userMenu() {
 }
 
 void UserPage::changeData() {
-    ProfileData User;
     cout << "\n[Change Data]" << endl;
 }
 

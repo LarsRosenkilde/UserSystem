@@ -19,12 +19,6 @@ int main() {
     string username;
     string password;
     string email;
-    string firstname;
-    string lastname;
-    string gender;
-    signed int age;
-    double height;
-    double weight;
 
     ProfileData User;
 
@@ -88,6 +82,14 @@ int main() {
                                 continue;
                             }
                             User.setEmail(email);
+
+                            cout << "Enter Password:" << endl;
+                            cin >> password;
+                            if (!ProfileData::validatePassword(password)) {
+                                cout << "Password must be at least 6 characters long.\n" << endl;
+                                continue;
+                            }
+                            User.setPassword(password);
                             break;
                         }
                         catch (exception & e) {
@@ -96,81 +98,6 @@ int main() {
                             continue;
                         }
                     }
-                    while (true) {
-                        try {
-                            cout << "Enter Password:" << endl;
-                            cin >> password;
-                            if (!ProfileData::validatePassword(password)) {
-                                cout << "Password must be at least 6 characters long.\n" << endl;
-                                continue;
-                            }
-                            User.setPassword(password);
-
-                            cout << "Enter Your First Name:" << endl;
-                            cin >> firstname;
-                            if (!ProfileData::validateFirstname(firstname)) {
-                                cout << "First name can't contain digits.\n" << endl;
-                                continue;
-                            }
-                            User.setFirstname(firstname);
-
-                            cout << "Enter Your Last Name:" << endl;
-                            cin >> lastname;
-                            if (!ProfileData::validateLastname(lastname)) {
-                                cout << "Last name can't contain digits.\n" << endl;
-                                continue;
-                            }
-                            User.setLastname(lastname);
-
-                            cout << "Enter Your Gender:" << endl;
-                            cin >> gender;
-                            if (!ProfileData::validateGender(gender)) {
-                                cout << "Please only enter 'male' or 'female'.\n" << endl;
-                                continue;
-                            }
-                            User.setGender(gender);
-                            break;
-                        }
-                        catch (exception &e) {
-                            cout << "Please enter a valid data type!" << endl;
-                            cout << e.what() << endl;
-                            continue;
-                        }
-                    }
-                    while (true) {
-                        try {
-                            cout << "Enter Your Age:" << endl;
-                            cin >> age;
-                            if (!ProfileData::validateAge(age)) {
-                                cout << "Please only enter a positive integer for your age..\n" << endl;
-                                continue;
-                            }
-                            User.setAge(age);
-
-                            cout << "Enter your height in meters:" << endl;
-                            cin >> height;
-                            if (!ProfileData::validateHeight(height)) {
-                                cout << "Please enter a valid height in meters..\n" << endl;
-                                continue;
-                            }
-                            User.setHeight(height);
-
-                            cout << "Enter your weight in kilograms:" << endl;
-                            cin >> weight;
-                            if (!ProfileData::validateWeight(weight)) {
-                                cout << "Please enter a valid weight in kilograms..\n" << endl;
-                                continue;
-                            }
-                            User.setWeight(weight);
-                            break;
-                        }
-                        catch (exception &e) {
-                            cout << "Please enter a valid data type!" << endl;
-                            cout << e.what() << endl;
-                            continue;
-                        }
-                    }
-                    User.calcBmi();
                     User.signupUser();
                     break;
 

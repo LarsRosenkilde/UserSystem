@@ -1,4 +1,4 @@
-﻿# Enhanced User System
+﻿# User System
 ### Simple user system written in C++
 - Login
 - Sign up

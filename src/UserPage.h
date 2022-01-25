@@ -8,24 +8,8 @@ private:
     string Username;
     string Password;
     string Email;
-    string FirstName;
-    string LastName;
-    string Gender;
-    string Age;
-    string Height;
-    string Weight;
-    string Bmi;
-
-    int age{};
-    double height{};
-    double weight{};
 
     string users;
-
-    string newData;
-    string newHeight;
-    string newWeight;
-    string newBmi;
 
     void personalDetails();
     void displayData();

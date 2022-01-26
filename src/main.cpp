@@ -29,9 +29,8 @@ int main() {
         cout << "[1] Login" << endl;
         cout << "[2] Sign Up" << endl;
         cout << "[3] Display Users\n" << endl;
-
-        cout << "Selection: " << endl;
         try {
+            cout << "Selection: ";
             cin >> choice;
             cin.ignore();
             switch (choice) {
@@ -40,10 +39,10 @@ int main() {
 
                 case 1:
                     cout << "\n[ SING IN ]" << endl;
-                    cout << "Enter username: " << endl;
+                    cout << "Enter username: ";
                     cin >> username;
                     User.setUsername(username);
-                    cout << "Enter password: " << endl;
+                    cout << "Enter password: ";
                     cin >> password;
                     User.setPassword(password);
                     if (User.loginUser()) {
@@ -59,7 +58,7 @@ int main() {
                     cout << "\n[ SING UP ]" << endl;
                     while (true) {
                         try {
-                            cout << "Enter Username:" << endl;
+                            cout << "Enter Username: ";
                             cin >> username;
                             if (!ProfileData::validateUniqueUsername(username)) {
                                 cout << "Username is already in use.\n" << endl;
@@ -71,7 +70,7 @@ int main() {
                             }
                             User.setUsername(username);
 
-                            cout << "Enter Email:" << endl;
+                            cout << "Enter Email: ";
                             cin >> email;
                             if (!ProfileData::validateUniqueEmail(email)) {
                                 cout << "Email already in use.\n" << endl;
@@ -83,7 +82,7 @@ int main() {
                             }
                             User.setEmail(email);
 
-                            cout << "Enter Password:" << endl;
+                            cout << "Enter Password: ";
                             cin >> password;
                             if (!ProfileData::validatePassword(password)) {
                                 cout << "Password must be at least 6 characters long.\n" << endl;

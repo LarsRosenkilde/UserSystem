@@ -3,4 +3,4 @@
 - Login
 - Sign up
 - Edit Details
-- Encrypt & Decrypt user-data
+- Encrypt & Decrypt Userdata

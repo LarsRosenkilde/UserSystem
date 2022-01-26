@@ -14,10 +14,6 @@ void ProfileData::setEmail(string email) {
     Email = move(email);
 }
 
-string ProfileData::getPassword() {
-    return Password;
-}
-
 bool ProfileData::validateUniqueUsername(const string& Username) {
     string users;
     string username;

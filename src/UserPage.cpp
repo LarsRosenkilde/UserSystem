@@ -38,7 +38,7 @@ void UserPage::changeData() {
     string newUsername;
     string newPass;
     string newMail;
-    cout << "\n[Change Data]" << endl;
+    cout << "\n[ CHANGE DATA ]" << endl;
     cout << "[1] Username" << endl;
     cout << "[2] Password" << endl;
     cout << "[3] Email\n" << endl;
@@ -50,7 +50,7 @@ void UserPage::changeData() {
         switch (choice) {
             case 1:
                 while (true) {
-                    cout << "\n[Change Username]" << endl;
+                    cout << "\n[ CHANGE USERNAME ]" << endl;
                     cout << "Enter new username: ";
                     cin >> newUsername;
                     cin.ignore();
@@ -67,12 +67,12 @@ void UserPage::changeData() {
                 }
                 break;
             case 2:
-                cout << "\n[Change Password]" << endl;
+                cout << "\n[ CHANGE PASSWORD ]" << endl;
                 cout << "Enter new password: ";
                 cin >> newPass;
                 cin.ignore();
             case 3:
-                cout << "\n[Change Email]" << endl;
+                cout << "\n[ CHANGE EMAIL ]" << endl;
                 cout << "Enter new email: ";
                 cin >> newPass;
                 cin.ignore();

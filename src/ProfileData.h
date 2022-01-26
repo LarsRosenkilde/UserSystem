@@ -14,6 +14,7 @@ public:
     void setUsername(string username);
     void setPassword(string password);
     void setEmail(string email);
+    string getPassword();
 
     static bool validateUniqueUsername(const string &Username);
     static bool validateUsername(const string &Username);

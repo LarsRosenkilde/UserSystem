@@ -14,6 +14,10 @@ void ProfileData::setEmail(string email) {
     Email = move(email);
 }
 
+string ProfileData::getPassword() {
+    return Password;
+}
+
 bool ProfileData::validateUniqueUsername(const string& Username) {
     string users;
     string username;
@@ -114,7 +118,9 @@ void ProfileData::signupUser() {
 
 void ProfileData::changeUsername() {
     string testRepl = "username";
-    string newRepl = "newusername";
+    cout << getPassword();
+    /*
+    string newRepl = "newusername," + Password + ',' + Email;
 
     crypt.decrypt();
     fstream userFile("temp.csv", ios::in);
@@ -133,10 +139,12 @@ void ProfileData::changeUsername() {
         userFile.close();
         userFile.open("newList.csv", ios::out | ios::trunc);
         for (const auto& i : users) {
+            cout << i;
             userFile << i << endl;
         }
     }
     crypt.encrypt();
+     */
 }
 
 void ProfileData::changePassword() {

@@ -36,6 +36,8 @@ void UserPage::userMenu() {
 
 void UserPage::changeData() {
     cout << "\n[Change Data]" << endl;
+    ProfileData user;
+    user.changeUsername();
 }
 
 void UserPage::displayData() {

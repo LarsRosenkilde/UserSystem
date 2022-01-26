@@ -18,7 +18,7 @@ public:
     explicit UserPage(string username);
     void userMenu();
     void changeData();
-    void changeUsername();
+    void changeUsername(string newUsername);
 
     void changePassword();
     void changeEmail();

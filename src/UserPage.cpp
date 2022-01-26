@@ -36,7 +36,11 @@ void UserPage::userMenu() {
 
 void UserPage::changeData() {
     cout << "\n[Change Data]" << endl;
-    changeUsername();
+    string newUsername;
+    cout << "Enter new username: ";
+    cin >> newUsername;
+    cin.ignore();
+    changeUsername(newUsername);
 }
 
 void UserPage::displayData() {
@@ -65,10 +69,9 @@ void UserPage::personalDetails() {
     crypt.encrypt();
 }
 
-void UserPage::changeUsername() {
+void UserPage::changeUsername(string newUsername) {
     Encryption crypt{};
-    string testRepl = "username";
-    string newRepl = "newusername," + Password + ',' + Email;
+    string newRepl = newUsername + ',' + Password + ',' + Email;
 
     crypt.decrypt();
     fstream userFile("temp.csv", ios::in);
@@ -78,7 +81,7 @@ void UserPage::changeUsername() {
         while(getline(userFile, user)) {
             cout << user << endl;
             string::size_type pos = 0;
-            while ((pos = user.find(testRepl, pos)) != string::npos) {
+            while ((pos = user.find(Username, pos)) != string::npos) {
                 user.replace(pos, user.size(), newRepl);
                 pos += newRepl.size();
             }

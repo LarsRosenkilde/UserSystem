@@ -35,12 +35,55 @@ void UserPage::userMenu() {
 }
 
 void UserPage::changeData() {
-    cout << "\n[Change Data]" << endl;
     string newUsername;
-    cout << "Enter new username: ";
-    cin >> newUsername;
-    cin.ignore();
-    changeUsername(newUsername);
+    string newPass;
+    string newMail;
+    cout << "\n[Change Data]" << endl;
+    cout << "[1] Username" << endl;
+    cout << "[2] Password" << endl;
+    cout << "[3] Email\n" << endl;
+    try {
+        signed int choice;
+        cout << "Selection: ";
+        cin >> choice;
+        cin.ignore();
+        switch (choice) {
+            case 1:
+                while (true) {
+                    cout << "\n[Change Username]" << endl;
+                    cout << "Enter new username: ";
+                    cin >> newUsername;
+                    cin.ignore();
+                    if (!ProfileData::validateUniqueUsername(newUsername)) {
+                        cout << "Username is already in use.\n" << endl;
+                        continue;
+                    }
+                    else if (!ProfileData::validateUsername(newUsername)) {
+                        cout << "Username must be at least 6 characters long.\n" << endl;
+                        continue;
+                    }
+                    changeUsername(newUsername);
+                    break;
+                }
+                break;
+            case 2:
+                cout << "\n[Change Password]" << endl;
+                cout << "Enter new password: ";
+                cin >> newPass;
+                cin.ignore();
+            case 3:
+                cout << "\n[Change Email]" << endl;
+                cout << "Enter new email: ";
+                cin >> newPass;
+                cin.ignore();
+            default:
+                cout << "Invalid choice.." << endl;
+                break;
+        }
+    }
+    catch (exception& e) {
+        cout << e.what();
+    }
 }
 
 void UserPage::displayData() {

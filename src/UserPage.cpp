@@ -62,7 +62,7 @@ void UserPage::changeData() {
                         cout << "Username must be at least 6 characters long.\n" << endl;
                         continue;
                     }
-                    changeUsername(newUsername);
+                    changeUserData("username", newUsername);
                     break;
                 }
                 break;
@@ -76,15 +76,28 @@ void UserPage::changeData() {
                         cout << "Username must be at least 6 characters long.\n" << endl;
                         continue;
                     }
-                    changePassword(newPass);
+                    changeUserData("password", newPass);
                     break;
                 }
                 break;
             case 3:
-                cout << "\n[ CHANGE EMAIL ]" << endl;
-                cout << "Enter new email: ";
-                cin >> newPass;
-                cin.ignore();
+                while (true) {
+                    cout << "\n[ CHANGE EMAIL ]" << endl;
+                    cout << "Enter new email: ";
+                    cin >> newMail;
+                    cin.ignore();
+                    if (!ProfileData::validateUniqueEmail(newMail)) {
+                        cout << "Email is already in use.\n" << endl;
+                        continue;
+                    }
+                    else if (!ProfileData::validateEmail(newMail)) {
+                        cout << "Email is not a valid email.\n" << endl;
+                        continue;
+                    }
+                    changeUserData("email", newMail);
+                    break;
+                }
+                break;
             default:
                 cout << "Invalid choice.." << endl;
                 break;
@@ -121,9 +134,18 @@ void UserPage::personalDetails() {
     crypt.encrypt();
 }
 
-void UserPage::changeUsername(const string& newUsername) {
+void UserPage::changeUserData(const string& flag, const string& newData) {
     Encryption crypt{};
-    string newRepl = newUsername + ',' + Password + ',' + Email;
+    string newRepl;
+    if (flag == "username") {
+        newRepl = newData + ',' + Password + ',' + Email;
+    }
+    else if (flag == "password") {
+        newRepl = Username + ',' + newData + ',' + Email;
+    }
+    else if (flag == "email") {
+        newRepl = Username + ',' + Password + ',' + newData;
+    }
 
     crypt.decrypt();
     fstream userFile("temp.csv", ios::in);
@@ -148,59 +170,16 @@ void UserPage::changeUsername(const string& newUsername) {
     try {
         if (filesystem::remove("temp.csv")) {
             rename("newList.csv", "temp.csv");
-            cout << "Username changed successfully to " + newUsername << endl;
+            cout << flag << " successfully changed." << endl;
         }
         else {
-            cout << "Username couldn't be changed at this moment." << endl;
+            cout << flag << " couldn't be changed." << endl;
         }
     }
     catch (const filesystem::filesystem_error& e) {
         cout << e.what() << endl;
     }
     crypt.encrypt();
-}
-
-void UserPage::changePassword(const string& newPass) {
-    Encryption crypt{};
-    string newRepl = Username + ',' + newPass + ',' + Email;
-
-    crypt.decrypt();
-    fstream userFile("temp.csv", ios::in);
-    if (userFile.is_open()) {
-        string user;
-        vector<string> users_details;
-        while(getline(userFile, user)) {
-            string::size_type pos = 0;
-            while ((pos = user.find(Username, pos)) != string::npos) {
-                user.replace(pos, user.size(), newRepl);
-                pos += newRepl.size();
-            }
-            users_details.push_back(user);
-        }
-        userFile.close();
-        userFile.open("newList.csv", ios::out | ios::trunc);
-        for (const auto& i : users_details) {
-            userFile << i << endl;
-        }
-    }
-    userFile.close();
-    try {
-        if (filesystem::remove("temp.csv")) {
-            rename("newList.csv", "temp.csv");
-            cout << "Password changed successfully to " + newPass << endl;
-        }
-        else {
-            cout << "Username couldn't be changed at this moment." << endl;
-        }
-    }
-    catch (const filesystem::filesystem_error& e) {
-        cout << e.what() << endl;
-    }
-    crypt.encrypt();
-}
-
-void UserPage::changeEmail() {
-
 }
 
 UserPage::~UserPage() = default;

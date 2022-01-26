@@ -19,7 +19,7 @@ public:
     explicit UserPage(string username);
     void userMenu();
     void changeData();
-    void changeUsername(const string& newUsername);
+    void changeUserData(const string& flag, const string& newUsername);
 
     void changePassword(const string& newPass);
     void changeEmail();

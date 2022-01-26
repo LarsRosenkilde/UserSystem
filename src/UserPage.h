@@ -18,6 +18,11 @@ public:
     explicit UserPage(string username);
     void userMenu();
     void changeData();
+    void changeUsername();
+
+    void changePassword();
+    void changeEmail();
+
     ~UserPage();
 };
 

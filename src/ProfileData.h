@@ -24,9 +24,6 @@ public:
 
     bool loginUser();
     void signupUser();
-    void changeUsername();
-    void changePassword();
-    void changeEmail();
 
     ~ProfileData();
 };

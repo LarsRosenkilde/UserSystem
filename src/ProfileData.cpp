@@ -116,43 +116,4 @@ void ProfileData::signupUser() {
     crypt.encrypt();
 }
 
-void ProfileData::changeUsername() {
-    string testRepl = "username";
-    cout << getPassword();
-    /*
-    string newRepl = "newusername," + Password + ',' + Email;
-
-    crypt.decrypt();
-    fstream userFile("temp.csv", ios::in);
-    if (userFile.is_open()) {
-        string user;
-        vector<string> users;
-        while(getline(userFile, user)) {
-            cout << user << endl;
-            string::size_type pos = 0;
-            while ((pos = user.find(testRepl, pos)) != string::npos) {
-                user.replace(pos, user.size(), newRepl);
-                pos += newRepl.size();
-            }
-            users.push_back(user);
-        }
-        userFile.close();
-        userFile.open("newList.csv", ios::out | ios::trunc);
-        for (const auto& i : users) {
-            cout << i;
-            userFile << i << endl;
-        }
-    }
-    crypt.encrypt();
-     */
-}
-
-void ProfileData::changePassword() {
-
-}
-
-void ProfileData::changeEmail() {
-
-}
-
 ProfileData::~ProfileData() = default;

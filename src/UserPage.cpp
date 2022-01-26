@@ -36,8 +36,7 @@ void UserPage::userMenu() {
 
 void UserPage::changeData() {
     cout << "\n[Change Data]" << endl;
-    ProfileData user;
-    user.changeUsername();
+    changeUsername();
 }
 
 void UserPage::displayData() {
@@ -64,6 +63,43 @@ void UserPage::personalDetails() {
     }
     userList.close();
     crypt.encrypt();
+}
+
+void UserPage::changeUsername() {
+    Encryption crypt{};
+    string testRepl = "username";
+    string newRepl = "newusername," + Password + ',' + Email;
+
+    crypt.decrypt();
+    fstream userFile("temp.csv", ios::in);
+    if (userFile.is_open()) {
+        string user;
+        vector<string> users_details;
+        while(getline(userFile, user)) {
+            cout << user << endl;
+            string::size_type pos = 0;
+            while ((pos = user.find(testRepl, pos)) != string::npos) {
+                user.replace(pos, user.size(), newRepl);
+                pos += newRepl.size();
+            }
+            users_details.push_back(user);
+        }
+        userFile.close();
+        userFile.open("newList.csv", ios::out | ios::trunc);
+        for (const auto& i : users_details) {
+            cout << i;
+            userFile << i << endl;
+        }
+    }
+    crypt.encrypt();
+}
+
+void UserPage::changePassword() {
+
+}
+
+void UserPage::changeEmail() {
+
 }
 
 UserPage::~UserPage() = default;

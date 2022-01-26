@@ -21,7 +21,7 @@ public:
     void changeData();
     void changeUsername(const string& newUsername);
 
-    void changePassword();
+    void changePassword(const string& newPass);
     void changeEmail();
 
     ~UserPage();

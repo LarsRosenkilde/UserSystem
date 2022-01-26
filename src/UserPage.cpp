@@ -67,10 +67,19 @@ void UserPage::changeData() {
                 }
                 break;
             case 2:
-                cout << "\n[ CHANGE PASSWORD ]" << endl;
-                cout << "Enter new password: ";
-                cin >> newPass;
-                cin.ignore();
+                while (true) {
+                    cout << "\n[ CHANGE PASSWORD ]" << endl;
+                    cout << "Enter new password: ";
+                    cin >> newPass;
+                    cin.ignore();
+                    if (!ProfileData::validatePassword(newPass)) {
+                        cout << "Username must be at least 6 characters long.\n" << endl;
+                        continue;
+                    }
+                    changePassword(newPass);
+                    break;
+                }
+                break;
             case 3:
                 cout << "\n[ CHANGE EMAIL ]" << endl;
                 cout << "Enter new email: ";
@@ -87,7 +96,7 @@ void UserPage::changeData() {
 }
 
 void UserPage::displayData() {
-    cout << "\n[Profile Data]" << endl;
+    cout << "\n[ PROFILE DATA ]" << endl;
     cout << "Username: " << Username << endl;
     cout << "Password: " << Password << endl;
     cout << "Email: " << Email << endl;
@@ -151,8 +160,43 @@ void UserPage::changeUsername(const string& newUsername) {
     crypt.encrypt();
 }
 
-void UserPage::changePassword() {
+void UserPage::changePassword(const string& newPass) {
+    Encryption crypt{};
+    string newRepl = Username + ',' + newPass + ',' + Email;
 
+    crypt.decrypt();
+    fstream userFile("temp.csv", ios::in);
+    if (userFile.is_open()) {
+        string user;
+        vector<string> users_details;
+        while(getline(userFile, user)) {
+            string::size_type pos = 0;
+            while ((pos = user.find(Username, pos)) != string::npos) {
+                user.replace(pos, user.size(), newRepl);
+                pos += newRepl.size();
+            }
+            users_details.push_back(user);
+        }
+        userFile.close();
+        userFile.open("newList.csv", ios::out | ios::trunc);
+        for (const auto& i : users_details) {
+            userFile << i << endl;
+        }
+    }
+    userFile.close();
+    try {
+        if (filesystem::remove("temp.csv")) {
+            rename("newList.csv", "temp.csv");
+            cout << "Password changed successfully to " + newPass << endl;
+        }
+        else {
+            cout << "Username couldn't be changed at this moment." << endl;
+        }
+    }
+    catch (const filesystem::filesystem_error& e) {
+        cout << e.what() << endl;
+    }
+    crypt.encrypt();
 }
 
 void UserPage::changeEmail() {

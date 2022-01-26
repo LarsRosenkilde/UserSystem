@@ -112,4 +112,16 @@ void ProfileData::signupUser() {
     crypt.encrypt();
 }
 
+void ProfileData::changeUsername() {
+
+}
+
+void ProfileData::changePassword() {
+
+}
+
+void ProfileData::changeEmail() {
+
+}
+
 ProfileData::~ProfileData() = default;

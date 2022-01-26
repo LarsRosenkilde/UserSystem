@@ -2,6 +2,7 @@
 #define ENHANCEDUSERSYSTEM_USERPAGE_H
 #include "Encryption.h"
 #include "ProfileData.h"
+#include <filesystem>
 
 class UserPage {
 private:
@@ -18,7 +19,7 @@ public:
     explicit UserPage(string username);
     void userMenu();
     void changeData();
-    void changeUsername(string newUsername);
+    void changeUsername(const string& newUsername);
 
     void changePassword();
     void changeEmail();

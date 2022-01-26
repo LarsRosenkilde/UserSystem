@@ -69,7 +69,7 @@ void UserPage::personalDetails() {
     crypt.encrypt();
 }
 
-void UserPage::changeUsername(string newUsername) {
+void UserPage::changeUsername(const string& newUsername) {
     Encryption crypt{};
     string newRepl = newUsername + ',' + Password + ',' + Email;
 
@@ -92,8 +92,19 @@ void UserPage::changeUsername(string newUsername) {
             userFile << i << endl;
         }
     }
+    try {
+        if (filesystem::remove("temp.csv")) {
+            rename("newList.csv", "temp.csv");
+            cout << "Username changed successfully to " + newUsername << endl;
+        }
+        else {
+            cout << "Username couldn't be changed at this moment." << endl;
+        }
+    }
+    catch (const filesystem::filesystem_error& e) {
+        cout << e.what() << endl;
+    }
     crypt.encrypt();
-    cout << "Username changed successfully to " + newUsername << endl;
 }
 
 void UserPage::changePassword() {

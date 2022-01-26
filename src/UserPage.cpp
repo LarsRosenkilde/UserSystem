@@ -62,7 +62,7 @@ void UserPage::changeData() {
                         cout << "Username must be at least 6 characters long.\n" << endl;
                         continue;
                     }
-                    changeUserData("username", newUsername);
+                    changeUserData("Username", newUsername);
                     break;
                 }
                 break;
@@ -76,7 +76,7 @@ void UserPage::changeData() {
                         cout << "Username must be at least 6 characters long.\n" << endl;
                         continue;
                     }
-                    changeUserData("password", newPass);
+                    changeUserData("Password", newPass);
                     break;
                 }
                 break;
@@ -94,7 +94,7 @@ void UserPage::changeData() {
                         cout << "Email is not a valid email.\n" << endl;
                         continue;
                     }
-                    changeUserData("email", newMail);
+                    changeUserData("Email", newMail);
                     break;
                 }
                 break;
@@ -137,13 +137,13 @@ void UserPage::personalDetails() {
 void UserPage::changeUserData(const string& flag, const string& newData) {
     Encryption crypt{};
     string newRepl;
-    if (flag == "username") {
+    if (flag == "Username") {
         newRepl = newData + ',' + Password + ',' + Email;
     }
-    else if (flag == "password") {
+    else if (flag == "Password") {
         newRepl = Username + ',' + newData + ',' + Email;
     }
-    else if (flag == "email") {
+    else if (flag == "Email") {
         newRepl = Username + ',' + Password + ',' + newData;
     }
 

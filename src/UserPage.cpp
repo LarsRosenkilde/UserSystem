@@ -79,7 +79,6 @@ void UserPage::changeUsername(string newUsername) {
         string user;
         vector<string> users_details;
         while(getline(userFile, user)) {
-            cout << user << endl;
             string::size_type pos = 0;
             while ((pos = user.find(Username, pos)) != string::npos) {
                 user.replace(pos, user.size(), newRepl);
@@ -90,11 +89,11 @@ void UserPage::changeUsername(string newUsername) {
         userFile.close();
         userFile.open("newList.csv", ios::out | ios::trunc);
         for (const auto& i : users_details) {
-            cout << i;
             userFile << i << endl;
         }
     }
     crypt.encrypt();
+    cout << "Username changed successfully to " + newUsername << endl;
 }
 
 void UserPage::changePassword() {

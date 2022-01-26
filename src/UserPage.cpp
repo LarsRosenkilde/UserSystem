@@ -92,6 +92,7 @@ void UserPage::changeUsername(const string& newUsername) {
             userFile << i << endl;
         }
     }
+    userFile.close();
     try {
         if (filesystem::remove("temp.csv")) {
             rename("newList.csv", "temp.csv");

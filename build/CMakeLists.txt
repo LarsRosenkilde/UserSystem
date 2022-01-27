@@ -3,4 +3,4 @@ project(EnhancedUserSystem)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(UserSystem ../src/main.cpp ../src/Encryption.cpp ../src/Encryption.h ../src/UserPage.cpp ../src/UserPage.h ../src/ProfileData.cpp ../src/ProfileData.h)
+add_executable(UserSystem ../src/Source/main.cpp ../src/Source/Encryption.cpp ../src/Header/Encryption.h ../src/Source/UserPage.cpp ../src/Header/UserPage.h ../src/Source/ProfileData.cpp ../src/Header/ProfileData.h)

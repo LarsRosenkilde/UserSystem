@@ -1,4 +1,4 @@
-#include "UserPage.h"
+#include "../Header/UserPage.h"
 
 UserPage::UserPage(string username) {
     Username = move(username);

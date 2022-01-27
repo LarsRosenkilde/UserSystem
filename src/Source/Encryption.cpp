@@ -1,4 +1,4 @@
-#include "Encryption.h"
+#include "../Header/Encryption.h"
 
 void Encryption::encrypt() {
     fstream fileIn, fileOut;
